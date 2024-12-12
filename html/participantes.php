@@ -151,6 +151,13 @@ $res2 = $conexion->query($sql2) or die ($conexion->error);
                         fill-rule="nonzero" />
                     </svg>
                   </button>
+                  <button class="custom-btn addContribucion" data-bs-toggle="modal" data-bs-target="#addContribucion" data-id="<?php echo $fila['id_participante']; ?>">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17 12c-3.313 0-6 2.687-6 6s2.687 6 6 6 6-2.687 6-6-2.687-6-6-6zm.5 8.474v.526h-.5v-.499c-.518-.009-1.053-.132-1.5-.363l.228-.822c.478.186 1.114.383 1.612.27.574-.13.692-.721.057-1.005-.465-.217-1.889-.402-1.889-1.622 0-.681.52-1.292 1.492-1.425v-.534h.5v.509c.362.01.768.073 1.221.21l-.181.824c-.384-.135-.808-.257-1.222-.232-.744.043-.81.688-.29.958.856.402 1.972.7 1.972 1.773.001.858-.672 1.315-1.5 1.432zm1.624-10.179c1.132-.223 2.162-.626 2.876-1.197v.652c0 .499-.386.955-1.007 1.328-.581-.337-1.208-.6-1.869-.783zm-2.124-5.795c2.673 0 5-1.007 5-2.25s-2.327-2.25-5-2.25c-2.672 0-5 1.007-5 2.25s2.328 2.25 5 2.25zm.093-2.009c-.299-.09-1.214-.166-1.214-.675 0-.284.334-.537.958-.593v-.223h.321v.211c.234.005.494.03.784.09l-.116.342c-.221-.051-.467-.099-.708-.099l-.072.001c-.482.02-.521.287-.188.399.547.169 1.267.292 1.267.74 0 .357-.434.548-.967.596v.22h-.321v-.208c-.328-.003-.676-.056-.962-.152l.147-.343c.244.063.552.126.828.126l.208-.014c.369-.053.443-.3.035-.418zm-11.093 13.009c1.445 0 2.775-.301 3.705-.768.311-.69.714-1.329 1.198-1.899-.451-1.043-2.539-1.833-4.903-1.833-2.672 0-5 1.007-5 2.25s2.328 2.25 5 2.25zm.093-2.009c-.299-.09-1.214-.166-1.214-.675 0-.284.335-.537.958-.593v-.223h.321v.211c.234.005.494.03.784.09l-.117.342c-.22-.051-.466-.099-.707-.099l-.072.001c-.482.02-.52.287-.188.399.547.169 1.267.292 1.267.74 0 .357-.434.548-.967.596v.22h-.321v-.208c-.329-.003-.676-.056-.962-.152l.147-.343c.244.063.552.126.828.126l.208-.014c.368-.053.443-.3.035-.418zm4.003 8.531c-.919.59-2.44.978-4.096.978-2.672 0-5-1.007-5-2.25v-.652c1.146.918 3.109 1.402 5 1.402 1.236 0 2.499-.211 3.549-.611.153.394.336.773.547 1.133zm-9.096-3.772v-.651c1.146.917 3.109 1.401 5 1.401 1.039 0 2.094-.151 3.028-.435.033.469.107.926.218 1.37-.888.347-2.024.565-3.246.565-2.672 0-5-1.007-5-2.25zm0-2.5v-.652c1.146.918 3.109 1.402 5 1.402 1.127 0 2.275-.176 3.266-.509-.128.493-.21 1.002-.241 1.526-.854.298-1.903.483-3.025.483-2.672 0-5-1.007-5-2.25zm11-11v-.652c1.146.918 3.109 1.402 5 1.402 1.892 0 3.854-.484 5-1.402v.652c0 1.243-2.327 2.25-5 2.25-2.672 0-5-1.007-5-2.25zm0 5v-.652c.713.571 1.744.974 2.876 1.197-.661.183-1.287.446-1.868.783-.622-.373-1.008-.829-1.008-1.328zm0-2.5v-.651c1.146.917 3.109 1.401 5 1.401 1.892 0 3.854-.484 5-1.401v.651c0 1.243-2.327 2.25-5 2.25-2.672 0-5-1.007-5-2.25z"/></svg></a>
+                  </button>
+
+                  <button class="custom-btn addPago" data-bs-toggle="modal" data-bs-target="#PagoTanda" data-id="<?php echo $fila['id_participante']; ?>">
+                        <a href="#"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M22 22h-20c-1.104 0-2-.896-2-2v-12c0-1.104.896-2 2-2h1.626l.078.283c.194.631.518 1.221.95 1.717h-2.154c-.276 0-.5.224-.5.5v5.5h20v-5.5c0-.276-.224-.5-.5-.5h-2.154c.497-.569.853-1.264 1.029-2h1.625c1.104 0 2 .896 2 2v12c0 1.104-.896 2-2 2zm-20-5v2.5c0 .276.224.5.5.5h19c.276 0 .5-.224.5-.5v-2.5h-20zm8.911-5h-2.911c.584-1.357 1.295-2.832 2-4-.647-.001-1.572.007-2 0-2.101-.035-2.987-1.806-3-3-.016-1.534 1.205-3.007 3-3 1.499.006 2.814.872 4 2.313 1.186-1.441 2.501-2.307 4-2.313 1.796-.007 3.016 1.466 3 3-.013 1.194-.899 2.965-3 3-.428.007-1.353-.001-2 0 .739 1.198 1.491 2.772 2 4h-2.911c-.241-1.238-.7-2.652-1.089-3.384-.388.732-.902 2.393-1.089 3.384zm-2.553-7.998c-1.131 0-1.507 1.918.12 1.998.237.012 2.235 0 2.235 0-1.037-1.44-1.52-1.998-2.355-1.998zm7.271 0c1.131 0 1.507 1.918-.12 1.998-.237.012-2.222 0-2.222 0 1.037-1.44 1.507-1.998 2.342-1.998z"/></svg></a>
+                  </button>
 
 
                 </td>
@@ -253,6 +260,110 @@ $res2 = $conexion->query($sql2) or die ($conexion->error);
     </div>
 </div>
 
+<div class="modal fade" id="addContribucion" tabindex="-1" aria-labelledby="editParticipantLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="../php/añadirContribucion.php" method="post" action="editarParticipante.php">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editParticipantLabel">Añadir Contribucion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+               
+                    <!-- Campo oculto para el ID -->
+                    <input type="hidden" name="txtDI" id="participantID">
+                    <input type="hidden" name="idtandaa" value="<?php echo $id ?>">
+                    <!-- Campos de edición -->
+                    <div class="mb-3">
+                        <label for="participantName" class="form-label">Monto</label>
+                        <input min="0" step="0.01"  type="number" class="form-control" name="txtMontoContribucion" required placeholder="$0.00">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Inicio de la tanda:</label>
+                        <input name="fechaRegistro"  required type="date" class="form-control" placeholder="">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="PagoTanda" tabindex="-1" aria-labelledby="editParticipantLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="../php/añadirpago.php" method="post" action="editarParticipante.php">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editParticipantLabel">Pago Tanda</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+               
+                    <!-- Campo oculto para el ID -->
+                    <input type="hidden" name="txtDII" id="participantIDD">
+                    <input type="hidden" name="Idtandaa" value="<?php echo $id ?>">
+                    <!-- Campos de edición -->
+                    <div class="mb-3">
+                        <label for="participantName" class="form-label">Monto a pagar</label>
+                        <input min="0" step="0.01"  type="number" class="form-control" name="txtMontoPago" required placeholder="$0.00">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Inicio de la tanda:</label>
+                        <input name="fechaRegistroPago"  required type="date" class="form-control" placeholder="">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var botones3 = document.getElementsByClassName("addPago");
+
+for (var i = 0; i < botones3.length; i++) {
+  botones3[i].onclick = (evt) => {
+    var btn = evt.target.closest('button');
+    
+    // Obtener los valores de los atributos data- del botón
+    var id = btn.getAttribute("data-id");
+    
+
+
+    // Asignar estos valores a los campos del formulario en el modal
+    document.getElementById("participantIDD").value = id;
+    
+
+  }
+}
+</script>
+<script>
+    var botones2 = document.getElementsByClassName("addContribucion");
+
+for (var i = 0; i < botones2.length; i++) {
+  botones2[i].onclick = (evt) => {
+    var btn = evt.target.closest('button');
+    
+    // Obtener los valores de los atributos data- del botón
+    var id = btn.getAttribute("data-id");
+    
+
+
+    // Asignar estos valores a los campos del formulario en el modal
+    document.getElementById("participantID").value = id;
+    
+
+  }
+}
+
+
+
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -280,6 +391,8 @@ for (var i = 0; i < botones.length; i++) {
 
   }
 }
+
+
 
   </script>
   <script>

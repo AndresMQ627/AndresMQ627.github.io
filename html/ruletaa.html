@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta Sencilla</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .wheel {
+      width: 300px;
+      height: 300px;
+      border: 5px solid #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 20px auto;
+    }
+
+    .pointer {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid red;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ruleta Sencilla</h1>
+  <div class="wheel" id="wheel">
+    <div class="pointer"></div>
+    <!-- Aquí irá el contenido dinámico -->
+  </div>
+  <button onclick="spinWheel()">Girar Ruleta</button>
+  <div class="result" id="result">Resultado: -</div>
+
+  <script>
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Números de ejemplo
+    const wheel = document.getElementById('wheel');
+
+    // Renderizar los números en la rueda
+    function renderWheel() {
+      const total = numbers.length;
+      const angleStep = 360 / total;
+      numbers.forEach((num, index) => {
+        const angle = index * angleStep;
+        const segment = document.createElement('div');
+        segment.textContent = num;
+        segment.style.position = 'absolute';
+        segment.style.transform = `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`;
+        segment.style.transformOrigin = 'center';
+        wheel.appendChild(segment);
+      });
+    }
+
+    renderWheel();
+
+    function spinWheel() {
+      const totalDegrees = 360 * 5; // Giros completos
+      const randomIndex = Math.floor(Math.random() * numbers.length);
+      const selectedAngle = randomIndex * (360 / numbers.length);
+
+      const finalAngle = totalDegrees - selectedAngle;
+      wheel.style.transition = 'transform 3s ease-out';
+      wheel.style.transform = `rotate(${finalAngle}deg)`;
+
+      setTimeout(() => {
+        const result = numbers[randomIndex];
+        document.getElementById('result').textContent = `Resultado: ${result}`;
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
