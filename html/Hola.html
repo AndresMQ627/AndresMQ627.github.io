@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Chica</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            margin: 0 auto;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .heart:hover {
+            transform: rotate(-45deg) scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hearts span {
+            position: absolute;
+            bottom: -50px;
+            width: 10px;
+            height: 10px;
+            background: red;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: rise 5s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .hearts span:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .hearts span:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+        }
+        .hearts span:nth-child(3) {
+            left: 40%;
+            animation-delay: 2s;
+        }
+        .hearts span:nth-child(4) {
+            left: 60%;
+            animation-delay: 3s;
+        }
+        .hearts span:nth-child(5) {
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: floatUp 3s ease-in-out infinite;
+        }
+
+        .floating-heart::before,
+        .floating-heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .floating-heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .floating-heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dale click, mi niña bonita ❤️</h1>
+        <br>
+        <br>
+        <div class="heart" onclick="showFloatingHearts(); alert('Solo queria decirte que tienes unos bonitos ojos, una voz tan bonita, unos labios muy hermosos, tienes unos lindos sentimientos y sinceros, pero tu personalidad y forma de ser es lo que me mata, me encanta cuando sonries y se marcan los oyuelitos de tus cachetitos, y pues eres una niña muy linda que se merece lo mejor ❤️')">
+            <div class="hearts">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFloatingHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
+
