@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Agregado para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rompecabezas</title>
   <style>
     * {
@@ -17,7 +17,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
+      overflow: hidden;  /* Impide que la página haga scroll */
       background: #dbeafe;
       flex-direction: column;
     }
@@ -73,14 +73,13 @@
       display: grid;
       grid-template-columns: repeat(3, 100px);
       grid-template-rows: repeat(3, 100px);
-      /* Añadido para espacio entre piezas */
       z-index: 1;
     }
 
     .piece {
       width: 100px;
       height: 100px;
-      background-image: url('image.png'); /* Reemplaza con tu imagen */
+      background-image: url('image.png');
       background-size: 300px 300px;
       border: 1px solid #ccc;
       cursor: grab;
@@ -108,10 +107,9 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
 
-    /* Media query para móviles */
     @media (max-width: 600px) {
       .puzzle {
-        grid-template-columns: repeat(3, 90px); /* Reducir tamaño de las piezas en móviles */
+        grid-template-columns: repeat(3, 90px);
         grid-template-rows: repeat(3, 90px);
       }
 
@@ -122,7 +120,7 @@
       }
 
       #message {
-        font-size: 18px; /* Reducir el tamaño del mensaje en pantallas pequeñas */
+        font-size: 18px;
         padding: 15px 20px;
       }
     }
@@ -135,6 +133,11 @@
 <div class="puzzle" id="puzzle"></div>
 
 <script>
+  // Prevenir el scroll de la página
+  document.body.addEventListener('touchmove', function(e) {
+    e.preventDefault();  // Esto desactiva el scroll
+  }, { passive: false });
+
   // Crear flores flotantes tipo tulipán
   for (let i = 0; i < 25; i++) {
     const flower = document.createElement('div');
@@ -166,7 +169,6 @@
       const div = document.createElement('div');
       div.classList.add('piece');
       div.style.backgroundPosition = `-${x * 100}px -${y * 100}px`;
-      div.draggable = true;
       div.dataset.index = index;
       puzzle.appendChild(div);
       order.push(div);
@@ -179,31 +181,40 @@
 
   let dragged;
 
-  puzzle.addEventListener('dragstart', e => {
+  function handleTouchStart(e) {
     dragged = e.target;
-    e.target.classList.add('dragging');
-  });
+    dragged.classList.add('dragging');
+  }
 
-  puzzle.addEventListener('dragend', e => {
-    e.target.classList.remove('dragging');
-    checkIfComplete();
-  });
-
-  puzzle.addEventListener('dragover', e => e.preventDefault());
-
-  puzzle.addEventListener('drop', e => {
-    e.preventDefault();
-    if (e.target.classList.contains('piece')) {
-      const draggedIndex = [...puzzle.children].indexOf(dragged);
-      const targetIndex = [...puzzle.children].indexOf(e.target);
-
-      if (dragged !== e.target) {
-        puzzle.insertBefore(dragged, puzzle.children[targetIndex]);
-        puzzle.insertBefore(e.target, puzzle.children[draggedIndex]);
-      }
+  function handleTouchMove(e) {
+    if (dragged) {
+      const touch = e.touches[0];
+      dragged.style.position = 'absolute';
+      dragged.style.left = `${touch.pageX - 50}px`;
+      dragged.style.top = `${touch.pageY - 50}px`;
     }
-  });
+  }
 
+  function handleTouchEnd(e) {
+    if (dragged) {
+      dragged.classList.remove('dragging');
+      const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+      if (target && target.classList.contains('piece') && target !== dragged) {
+        const draggedIndex = [...puzzle.children].indexOf(dragged);
+        const targetIndex = [...puzzle.children].indexOf(target);
+        puzzle.insertBefore(dragged, puzzle.children[targetIndex]);
+        puzzle.insertBefore(target, puzzle.children[draggedIndex]);
+      }
+      checkIfComplete();
+      dragged = null;
+    }
+  }
+
+  puzzle.addEventListener('touchstart', handleTouchStart);
+  puzzle.addEventListener('touchmove', handleTouchMove);
+  puzzle.addEventListener('touchend', handleTouchEnd);
+
+  // Función para verificar si el rompecabezas está completo
   function checkIfComplete() {
     const pieces = [...puzzle.children];
     const complete = pieces.every((piece, index) => piece.dataset.index == index);
