@@ -87,6 +87,7 @@
       align-items: center;
       justify-content: center;
       font-size: 20px;
+      position: relative;
     }
 
     .dragging {
@@ -133,9 +134,12 @@
 <div class="puzzle" id="puzzle"></div>
 
 <script>
-  // Prevenir el scroll de la página
+  // Prevenir el scroll de la página mientras se mueve el rompecabezas
+  let isDragging = false;
   document.body.addEventListener('touchmove', function(e) {
-    e.preventDefault();  // Esto desactiva el scroll
+    if (isDragging) {
+      e.preventDefault();  // Desactiva el scroll mientras se arrastra una pieza
+    }
   }, { passive: false });
 
   // Crear flores flotantes tipo tulipán
@@ -184,6 +188,7 @@
   function handleTouchStart(e) {
     dragged = e.target;
     dragged.classList.add('dragging');
+    isDragging = true;  // Activar el modo de arrastre
   }
 
   function handleTouchMove(e) {
@@ -207,6 +212,7 @@
       }
       checkIfComplete();
       dragged = null;
+      isDragging = false;  // Desactivar el modo de arrastre
     }
   }
 
